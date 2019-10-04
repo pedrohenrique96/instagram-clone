@@ -10,9 +10,10 @@ import { red } from "@material-ui/core/colors";
 
 import foto from "../../assets/foto.jpg";
 
+
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 700
+    maxWidth: 500
   },
   media: {
     height: 0,

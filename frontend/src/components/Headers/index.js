@@ -4,9 +4,13 @@ import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 import { Container, Img, Box } from "./styles";
-import { nominalTypeHack } from "prop-types";
+
+import { logout } from "../../services/auth";
 
 export default function Headers() {
+  function hendleLogout() {
+    logout();
+  }
   return (
     <Container>
       <Box className="container">
@@ -18,6 +22,7 @@ export default function Headers() {
         </Link>
         <Link to="/">
           <ExitToAppIcon
+            onClick={hendleLogout}
             style={{
               fontSize: 30,
               float: "right",
@@ -26,7 +31,8 @@ export default function Headers() {
             }}
           />
         </Link>
-        <Link to="/profile/1">
+
+        <Link to="/profile">
           <PersonOutlineIcon
             style={{ fontSize: 30, float: "right", marginTop: 25 }}
           />

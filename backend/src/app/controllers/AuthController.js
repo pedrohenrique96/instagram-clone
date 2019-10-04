@@ -5,9 +5,9 @@ const jwt = require('jsonwebtoken')
 
 class authController {
     async authenticate(req, res) {
-        const { email, password } = req.body;
+        const { username, password } = req.body;
 
-        const user = await User.findOne({ email }).select("+password");
+        const user = await User.findOne({ username }).select("+password");
 
         if (!user) res.status(400).send({ error: "User not found" });
         if (!(await bcrypt.compare(password, user.password)))

@@ -1,31 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import api from "../../services/api";
+import { getToken } from "../../services/auth";
 
 import { Container } from "./styles";
 
 export default function Outline() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUserName] = useState("");
+  const [bio, setBio] = useState("");
+  const [followers, setFollowers] = useState("");
+  const [following, setFollowing] = useState("");
+  const [avatar, setAvatar] = useState("");
+
+  useEffect(() => {
+    async function loadUser() {
+      const response = await api.get("userId", {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      });
+      const { name } = response.data;
+      const { email } = response.data;
+      const { username } = response.data;
+      const { bio } = response.data;
+      const { followers } = response.data;
+      const { following } = response.data;
+      const { avatar } = response.data;
+
+      setName(name);
+      setEmail(email);
+      setUserName(username);
+      setBio(bio);
+      setFollowers(followers);
+      setFollowing(following);
+      setAvatar(avatar);
+    }
+    loadUser();
+  }, []);
   return (
     <Container info>
       <div className="avatar">
         <img
-          style={{ borderRadius: "100%", height: 135 }}
-          alt=""
-          src="https://logodownload.org/wp-content/uploads/2017/04/instagram-logo-13.png"
+          style={{
+            width: '100%',
+            height: 175,
+            marginBottom: 15
+          }}
+          alt="avatar"
+          src={avatar}
         />
       </div>
       <section>
-      <div className="infoP">
-        <h3>pedrook16</h3>
-        <button>Profile edit</button>
-      </div>
-      <ul>
-        <li>15 publicações</li>
-        <li>382 seguidores</li>
-        <li>155 seguindo</li>
-      </ul>
-      <div className="infoB">
-        <h3>Pedro Henrique</h3>
-        <span>Desenvolvedor na CodeBy</span>
-      </div>
+        <div className="infoP">
+          <h3>{username}</h3>
+          <button>Profile edit</button>
+        </div>
+        <ul>
+          <li>{followers.length} seguidores</li>
+          <li>{following.length} seguindo</li>
+        </ul>
+        <div className="infoB">
+          <h3>{name}</h3>
+          <span>{bio}</span>
+        </div>
       </section>
     </Container>
   );

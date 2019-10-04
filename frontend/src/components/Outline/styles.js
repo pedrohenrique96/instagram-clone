@@ -4,7 +4,7 @@ export const Container = styled.div`
   ${props =>
     props.info &&
     css`
-      margin: 70px 200px;
+      margin: 44px 75px;
       display: flex;
       flex-direction: row;
       margin-bottom: 44px;
@@ -15,7 +15,6 @@ export const Container = styled.div`
         flex-basis: 0;
         -webkit-box-flex: 1;
         flex-grow: 1;
-        margin-right: 30px;
       }
 
       section {
@@ -35,7 +34,7 @@ export const Container = styled.div`
         -webkit-box-direction: normal;
         flex-direction: row;
         flex-shrink: 1;
-        min-width: 0;
+        margin-top: 30px;
         margin-bottom: 20px;
       }
 

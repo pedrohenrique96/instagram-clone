@@ -3,7 +3,7 @@ const User = require("../controllers/UserController");
 class FollowingController {
     async store(req, res) {
         try {
-            const { userId } = req.params;
+            const { userId } = req.userId;
             const { user } = req.headers;
 
             const loggedUser = await User.findById(user);

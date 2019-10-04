@@ -1,20 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import api from "../../services/api";
+import { login } from "../../services/auth";
 import { Container, Box, Form, Input, Button, Span } from "./styles";
 
-export default function SignUp() {
+export default function SignUp({ history }) {
+  const [name, setName] = useState("");
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassWord] = useState("");
+
+  async function handleSignUp(e) {
+    e.preventDefault();
+
+    const response = await api.post("/user", {
+      name,
+      email,
+      username,
+      password
+    });
+    login(response.data.token);
+    history.push(`/feed`);
+  }
   return (
     <Container>
       <Box>
         <Box textTop>
-          <img alt="" src="https://logodownload.org/wp-content/uploads/2017/04/instagram-logo-17.png" />
+          <img
+            alt=""
+            src="https://logodownload.org/wp-content/uploads/2017/04/instagram-logo-17.png"
+          />
         </Box>
-        <Form>
-          <Input type="email" placeholder="E-mail" />
-          <Input type="name" placeholder="Full Name" />
-          <Input type="name" placeholder="Username" />
-          <Input type="password" placeholder="Password" />
+        <Form onSubmit={handleSignUp}>
+          <Input
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            type="email"
+            placeholder="E-mail"
+          />
+          <Input
+            value={name}
+            onChange={e => setName(e.target.value)}
+            type="name"
+            placeholder="Full Name"
+          />
+          <Input
+            value={username}
+            onChange={e => setUserName(e.target.value)}
+            type="name"
+            placeholder="Username"
+          />
+          <Input
+            value={password}
+            onChange={e => setPassWord(e.target.value)}
+            type="password"
+            placeholder="Password"
+          />
           <Button>Register</Button>
         </Form>
         <Span>Have an account? </Span>

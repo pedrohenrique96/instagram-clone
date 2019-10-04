@@ -1,16 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import Card from './Cards'
+import Card from "./Cards";
+import Icon from "./Icon";
 
-import { Container } from './styles';
+import { Container } from "./styles";
 
 export default function Content() {
   return (
     <Container className="container">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      <Icon />
       <Card />
       <Card />
     </Container>

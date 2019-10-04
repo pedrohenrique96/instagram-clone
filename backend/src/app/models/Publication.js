@@ -2,15 +2,12 @@ const { Schema, model } = require("mongoose");
 
 const PublicationSchema = new Schema(
     {
-        photo: {
-            type: String,
-            required: true
-        },
+        photo: String,
 
         description: {
             type: String,
             maxlength: 200,
-            minlength: 10
+            minlength: 5
         },
 
         author: [
@@ -21,8 +18,14 @@ const PublicationSchema = new Schema(
         ]
     },
     {
-        timestamps: true
+        toJSON: {
+            virtuals: true
+        }
     }
 );
+
+PublicationSchema.virtual("photo_url").get(function() {
+    return `http://localhost:5000/files/${this.photo}`;
+});
 
 module.exports = model("Publication", PublicationSchema);
