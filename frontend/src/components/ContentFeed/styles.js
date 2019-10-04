@@ -5,6 +5,19 @@ export const Container = styled.div`
   margin-top: 50px;
   padding-top: 0px;
 
+  .div1 {
+    .empty {
+      display: flex;
+      text-align: center;
+      font-size: 32px;
+      color: #ddd;
+      font-weight: bold;
+      margin-top: 200px;
+      margin-right: 230px;
+      margin-left: 50px;
+    }
+  }
+
   .div2 {
     margin-left: 150px;
   }

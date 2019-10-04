@@ -53,33 +53,43 @@ export default function CardUser() {
 
   return (
     <>
-      {publi.map(pu => (
-        <Card
-          key={pu._id}
-          className={classes.card}
-          style={{ marginBottom: 50 }}
-        >
-          {pu.author.map(au => (
-            <CardHeader
-              key={au._id}
-              avatar={
-                <Avatar aria-label="recipe" className={classes.avatar}>
-                  <img style={{ height: 50 }} src={au.avatar} alt="avatar" />
-                </Avatar>
-              }
-              title={au.username}
-            />
+      {publi.length > 0 ? (
+        <>
+          {publi.map(pu => (
+            <Card
+              key={pu._id}
+              className={classes.card}
+              style={{ marginBottom: 50 }}
+            >
+              {pu.author.map(au => (
+                <CardHeader
+                  key={au._id}
+                  avatar={
+                    <Avatar aria-label="recipe" className={classes.avatar}>
+                      <img
+                        style={{ height: 50 }}
+                        src={au.avatar}
+                        alt="avatar"
+                      />
+                    </Avatar>
+                  }
+                  title={au.username}
+                />
+              ))}
+              <CardMedia
+                className={classes.media}
+                image={pu.photo_url}
+                title="public"
+              />
+              <CardContent className={classes.content}>
+                {pu.description}
+              </CardContent>
+            </Card>
           ))}
-          <CardMedia
-            className={classes.media}
-            image={pu.photo_url}
-            title="public"
-          />
-          <CardContent className={classes.content}>
-            {pu.description}
-          </CardContent>
-        </Card>
-      ))}
+        </>
+      ) : (
+        <div className="empty">No Picture :(</div>
+      )}
     </>
   );
 }
