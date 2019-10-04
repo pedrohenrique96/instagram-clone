@@ -2,18 +2,22 @@ const { Schema, model } = require("mongoose");
 
 const PublicationSchema = new Schema(
     {
-        photo: String,
+        photo: {
+            type: String,
+            required: true
+        },
 
         description: {
             type: String,
             maxlength: 200,
-            minlength: 5
+            minlength: 1
         },
 
         author: [
             {
                 type: Schema.Types.ObjectId,
-                ref: "User"
+                ref: "User",
+                required: true
             }
         ]
     },
