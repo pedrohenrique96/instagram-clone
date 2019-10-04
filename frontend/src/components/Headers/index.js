@@ -6,7 +6,6 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Container, Img, Box } from "./styles";
 
 import { logout } from "../../services/auth";
-import color from "@material-ui/core/colors/orange";
 
 export default function Headers() {
   function hendleLogout() {

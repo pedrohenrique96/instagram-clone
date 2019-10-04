@@ -38,7 +38,7 @@ export default function Form({ history }) {
           <PhotoCameraSharpIcon style={{ color: "#ddd" }} id="icon" />
         </label>
         <label id="desc">
-          Description * <span>(digite mais de 20 caracteris)</span>
+          Description * <span>(Type 20 Characters)</span>
         </label>
         <textarea
           value={description}

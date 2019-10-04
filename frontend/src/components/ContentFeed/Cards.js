@@ -13,7 +13,7 @@ import foto from "../../assets/foto.jpg";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 500
+    maxWidth: 600
   },
   media: {
     height: 0,
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Cards() {
+export default function CardUser() {
   const classes = useStyles();
 
   return (

@@ -1,24 +1,26 @@
-const User = require("../controllers/UserController");
+const User = require("../models/User");
 
 class FollowingController {
     async store(req, res) {
         try {
-            const { userId } = req.userId;
-            const { user } = req.headers;
+            const   userId  = req.userId
+            const { user } = req.headers
 
-            const loggedUser = await User.findById(user);
-            const targetUser = await User.findById(userId);
+            const loggedDev = await User.findById(user)
+            const targetDev = await User.findById(userId)
 
-            if (!targetUser)
-                return res.status(400).json({ error: " User not exists " });
+            if(!targetDev) return res.status(400).json({error: ' Dev not exists '})
 
-            loggedUser.following.push(targetUser._id);
+            if(targetDev.following.includes(loggedDev._id)) return console.log('Estou seguindo')
 
-            await loggedUser.save();
+            loggedDev.following.push(targetDev._id)
 
-            return res.json(loggedUser);
+            await loggedDev.save()
+
+        return res.json(loggedDev)
         } catch (err) {
             console.log(err);
+            return res.status(400).send(err)
         }
     }
 }

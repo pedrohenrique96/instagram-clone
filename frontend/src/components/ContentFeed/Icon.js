@@ -11,7 +11,6 @@ export default function Icon() {
       <Link className="link" to="/publication">
         <AddPhotoAlternateRoundedIcon className="icon" />
       </Link>
-      <span>Post a Photo...</span>
     </Div>
   );
 }

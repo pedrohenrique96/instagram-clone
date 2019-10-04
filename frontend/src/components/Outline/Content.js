@@ -13,7 +13,7 @@ export default function Outline() {
       const response = await api.get("/profile", {
         headers: token()
       });
-      console.log(response.data);
+      setPubli(response.data);
     }
     loadPlubli();
   }, []);
@@ -23,11 +23,15 @@ export default function Outline() {
       <hr />
       <div style={{ margin: 0 }}>
         <article>
-          <div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-          </div>          
+          {publi.length > 0 ? (
+            <div>
+            {publi.map(p => (
+                <img alt="alt" src={p.photo_url} />
+                ))}                    
+            </div>
+          ):(
+            <div className="empty">Post a Photo :)</div>
+          )}
         </article>
       </div>
     </Container>

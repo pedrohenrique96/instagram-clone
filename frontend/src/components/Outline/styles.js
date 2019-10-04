@@ -105,20 +105,25 @@ export const Container = styled.div`
         padding: 0;
       }
 
-      article div div {
-        background: green;
-        display: flex;
-        justify-content: center;
-        height: 300px;
-        margin: 0 auto;
-        margin-right: 28px;
-        display: block;
-        position: relative;
-        width: 100%;
-        flex: 1 0 0%;
+      article div  {
+      width: 100%;
+      max-height: 239px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 20px;
       }
-      article div div:last-child {
-        margin-right: 0;
+      article div img {
+        height: 239px;
+        width: 100%;
+      }
+
+      article .empty {
+        display: flex;
+        text-align: center;
+        font-size: 32px;
+        color: #ddd;
+        font-weight: bold;
+        margin-top: 200px;
       }
     `}
 `;
