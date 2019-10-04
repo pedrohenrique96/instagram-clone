@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
-import { getToken } from "../../services/auth";
+
+import { token } from "../../utils/utils";
 
 import { Container } from "./styles";
 
@@ -16,7 +17,7 @@ export default function Outline() {
   useEffect(() => {
     async function loadUser() {
       const response = await api.get("userId", {
-        headers: { Authorization: `Bearer ${getToken()}` }
+        headers: token()
       });
       const { name } = response.data;
       const { email } = response.data;
@@ -41,7 +42,7 @@ export default function Outline() {
       <div className="avatar">
         <img
           style={{
-            width: '100%',
+            width: "100%",
             height: 175,
             marginBottom: 15
           }}

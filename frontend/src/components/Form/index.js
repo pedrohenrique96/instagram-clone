@@ -3,7 +3,7 @@ import PhotoCameraSharpIcon from "@material-ui/icons/PhotoCameraSharp";
 import { Container } from "./styles";
 
 import api from "../../services/api";
-import { getToken } from "../../services/auth";
+import { token } from "../../utils/utils";
 
 export default function Form({ history }) {
   const [description, setDescription] = useState("");
@@ -22,7 +22,7 @@ export default function Form({ history }) {
     data.append("photo", photo);
 
     await api.post("/publication", data, {
-      headers: { Authorization: `Bearer ${getToken()}` }
+      headers: token()
     });
   }
   return (

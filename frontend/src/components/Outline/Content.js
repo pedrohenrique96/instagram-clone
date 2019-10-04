@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import api from "../../services/api";
-import { getToken } from "../../services/auth";
+import { token } from "../../utils/utils";
 
 import { Container } from "./styles";
 
@@ -11,7 +11,7 @@ export default function Outline() {
   useEffect(() => {
     async function loadPlubli() {
       const response = await api.get("/profile", {
-        headers: { Authorization: `Bearer ${getToken()}` }
+        headers: token()
       });
       console.log(response.data);
     }
