@@ -75,6 +75,7 @@ export const Container = styled.div`
         margin-left: 0;
         font-size: 16px;
         margin-right: 40px;
+        cursor: pointer;
       }
 
       section .infoB {

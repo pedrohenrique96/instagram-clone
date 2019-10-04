@@ -16,13 +16,17 @@ class UserController {
                 { _id: { $ne: userId } },
                 { _id: { $nin: loggedUser.following } }
             ]
-        }).populate("followers").populate("following");
+        })
+            .populate("followers")
+            .populate("following");
 
         return res.json(user);
     }
 
     async show(req, res) {
-        const user = await User.findById(req.userId);
+        const user = await User.findById(req.userId)
+            .populate("followers")
+            .populate("following");
 
         user.password = undefined;
 
