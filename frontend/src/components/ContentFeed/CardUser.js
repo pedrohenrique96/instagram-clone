@@ -81,6 +81,7 @@ const useStyles = makeStyles(theme => ({
 export default function CardsUser() {
   const classes = useStyles();
   const [users, setUsers] = useState([]);
+  const [foll, setFoll] = useState(false)
 
   useEffect(() => {
     async function loadUser() {
@@ -90,15 +91,21 @@ export default function CardsUser() {
       setUsers(response.data);
     }
     loadUser();
-  }, []);
+  }, [foll]);
 
   async function Following(_id) {
-    await api.post("/following", null, {
-      headers: {
-        Authorization: `Bearer ${getToken()}`,
-        user: _id
-      }
-    });
+    try {
+      await api.post("/following", null, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+          user: _id
+        }
+      });
+      setFoll(true)
+    } catch(err) {
+      console.log(err)
+    }
+    setFoll(false)
   }
   return (
     <Card className={classes.card}>
