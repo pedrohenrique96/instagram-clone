@@ -7,10 +7,18 @@ const img =
 
 class UserController {
     async index(req, res) {
-        const user = await User.find()
+        const user = req.userId;
+
+        const loggedUser = await User.findById(user);
+
+        const user = await User.find({
+            $and: [
+                { _id: { $ne: user } },
+                { _id: { $nin: loggedUser.following } }
+            ]
+        })
             .populate("followers")
             .populate("following");
-
 
         return res.json(user);
     }

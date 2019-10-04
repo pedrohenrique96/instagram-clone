@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 
 import api from "../../services/api";
 import { token } from "../../utils/utils";
+import { getToken } from "../../services/auth";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -92,10 +93,12 @@ export default function CardsUser() {
   }, []);
 
   async function Following(_id) {
-    const response = await api.post("/following", {
-      headers: token()
+    await api.post("/following", null, {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+        user: _id
+      }
     });
-    console.log(response.data);
   }
   return (
     <Card className={classes.card}>
