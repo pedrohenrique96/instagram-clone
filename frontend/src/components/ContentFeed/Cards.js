@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -10,13 +10,17 @@ import { red } from "@material-ui/core/colors";
 
 import foto from "../../assets/foto.jpg";
 
+import api from "../../services/api";
+import { token } from "../../utils/utils";
 
 const useStyles = makeStyles(theme => ({
   card: {
+    width: 600,
     maxWidth: 600
   },
   media: {
-    height: 0,
+    width: 600,
+    height: 400,
     paddingTop: "56.25%" // 16:9
   },
   expand: {
@@ -29,32 +33,53 @@ const useStyles = makeStyles(theme => ({
   expandOpen: {
     transform: "rotate(180deg)"
   },
-  avatar: {
-    backgroundColor: red[500]
+
+  content: {
+    fontSize: 16,
+    fontWeight: 500,
+    marginLeft: 30
   }
 }));
 
 export default function CardUser() {
   const classes = useStyles();
 
+  const [publi, setPubli] = useState([]);
+
+  useEffect(() => {
+    async function loadPubli() {
+      const response = await api.get("/publication", {
+        headers: token()
+      });
+      setPubli(response.data);
+    }
+    loadPubli();
+  }, []);
+
   return (
-    <Card className={classes.card} style={{ marginBottom: 50 }}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            P
-          </Avatar>
-        }
-        title="Pedro Henrique"
-      />
-      <CardMedia className={classes.media} image={foto} title="public" />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
-        </Typography>
-      </CardContent>
-    </Card>
+    <>
+      {publi.map(pu => (
+        <Card className={classes.card} style={{ marginBottom: 50 }}>
+          {pu.author.map(au => (
+            <CardHeader
+              avatar={
+                <Avatar aria-label="recipe" className={classes.avatar}>
+                  <img style={{ height: 50 }} src={au.avatar} alt="" srcset="" />
+                </Avatar>
+              }
+              title={au.username}
+            />
+          ))}
+          <CardMedia
+            className={classes.media}
+            image={pu.photo_url}
+            title="public"
+          />
+          <CardContent className={classes.content}>            
+              {pu.description}           
+          </CardContent>
+        </Card>
+      ))}
+    </>
   );
 }

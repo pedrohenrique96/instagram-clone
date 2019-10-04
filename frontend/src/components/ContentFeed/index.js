@@ -2,7 +2,7 @@ import React from "react";
 
 import Card from "./Cards";
 import Icon from "./Icon";
-import CardUser from './CardUser'
+import CardUser from "./CardUser";
 import { Container } from "./styles";
 
 export default function Content() {
@@ -10,18 +10,10 @@ export default function Content() {
     <Container className="container">
       <Icon />
       <div className="div1">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card />        
       </div>
-      <div className="div2"> 
-       <CardUser/>
+      <div className="div2">
+        <CardUser />
       </div>
     </Container>
   );

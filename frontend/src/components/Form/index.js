@@ -5,7 +5,7 @@ import { Container } from "./styles";
 import api from "../../services/api";
 import { token } from "../../utils/utils";
 
-export default function Form({ history }) {
+export default function Form() {
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState(null);
 

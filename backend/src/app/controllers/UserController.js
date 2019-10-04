@@ -7,9 +7,10 @@ const img =
 
 class UserController {
     async index(req, res) {
-        const user = await User.find();
+        const user = await User.find()
+            .populate("followers")
+            .populate("following");
 
-        user.password = undefined;
 
         return res.json(user);
     }

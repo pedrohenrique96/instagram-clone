@@ -4,8 +4,8 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 
-import api from '../../services/api'
-import { token } from '../../utils/utils'
+import api from "../../services/api";
+import { token } from "../../utils/utils";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -24,34 +24,32 @@ const useStyles = makeStyles(theme => ({
   },
   expandOpen: {
     transform: "rotate(180deg)"
-  } ,
-  
+  },
+
   cardHeader: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 14,
     fontWeight: 600
   },
 
-  cardContent : {
-    borderTop: '1px solid #ddd',
-    borderBottom: '1px solid #ddd',
+  cardContent: {
+    borderTop: "1px solid #ddd",
+    borderBottom: "1px solid #ddd",
     marginBottom: 30,
-    backgroundColor: '#fafafa'
-
+    backgroundColor: "#fafafa"
   },
 
   divP: {
-    display: 'flex',
-    flexDirection: 'column',
-    listStyle: 'none',
-    justifyContent: 'center',
-    alignItems: 'center'
+    display: "flex",
+    flexDirection: "column",
+    listStyle: "none",
+    justifyContent: "center",
+    alignItems: "center"
   },
 
   div: {
-    display: 'flex',
-    flexDirection: 'row'
-    
+    display: "flex",
+    flexDirection: "row"
   },
 
   button: {
@@ -60,9 +58,9 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 10,
     flexShrink: 0,
     padding: 6,
-    background: '#007bff',
-    border: '0 solid rgba(0, 0, 0, 0.0975)',
-    color: '#FFF',
+    background: "#007bff",
+    border: "0 solid rgba(0, 0, 0, 0.0975)",
+    color: "#FFF",
     fontWeight: 600,
     fontSize: 13,
     borderRadius: 4
@@ -77,36 +75,41 @@ const useStyles = makeStyles(theme => ({
     fontSize: 16,
     fontWeight: 500
   }
-
 }));
 
 export default function CardsUser() {
   const classes = useStyles();
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     async function loadUser() {
-      const response = await api.get('/user', {
+      const response = await api.get("/user", {
         headers: token()
-      })
-      setUsers(response.data)
-    } 
-    loadUser()
-  }, [])
+      });
+      setUsers(response.data);
+    }
+    loadUser();
+  }, []);
+
+  async function Following(_id) {
+    console.log(_id)
+
+    const response = await api.post('/following', {
+      headers: token()
+    })
+    console.log(response.data)
+  }
   return (
     <Card className={classes.card}>
-      <CardHeader   className={classes.cardHeader}     
-        title="Encontre Usuários"
-      />     
+      <CardHeader className={classes.cardHeader} title="Encontre Usuários" />
       <CardContent className={classes.cardContent}>
         <div className={classes.divP}>
           {users.map(u => (
             <div key={u._id}>
-            <img className={classes.image} src={u.avatar} />
-            <span className={classes.span}>{u.username}</span>
-            <button className={classes.button}>Follow</button>
-            
-          </div>
+              <img className={classes.image} src={u.avatar} />
+              <span className={classes.span}>{u.username}</span>
+              <button onClick={() => Following(u._id)} className={classes.button}>Follow</button>
+            </div>
           ))}
         </div>
       </CardContent>

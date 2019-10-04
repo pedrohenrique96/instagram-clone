@@ -12,10 +12,10 @@ export const Container = styled.div`
 
 export const Div = styled.div`
   position: fixed;
-	width: 50px;
-	right: 10px;
-	top: 100px;
-	z-index: 9;
+  width: 50px;
+  right: 10px;
+  top: 100px;
+  z-index: 9;
 
   .icon {
     font-size: 50px;
@@ -31,4 +31,8 @@ export const Article = styled.article`
   header {
     display: flex;
   }
+`;
+
+export const Card = styled.div`
+ 
 `;
