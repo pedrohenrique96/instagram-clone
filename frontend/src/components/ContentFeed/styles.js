@@ -32,7 +32,3 @@ export const Article = styled.article`
     display: flex;
   }
 `;
-
-export const Card = styled.div`
- 
-`;

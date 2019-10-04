@@ -5,11 +5,6 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
-import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
-
-import foto from "../../assets/foto.jpg";
-
 import api from "../../services/api";
 import { token } from "../../utils/utils";
 
@@ -59,12 +54,17 @@ export default function CardUser() {
   return (
     <>
       {publi.map(pu => (
-        <Card className={classes.card} style={{ marginBottom: 50 }}>
+        <Card
+          key={pu._id}
+          className={classes.card}
+          style={{ marginBottom: 50 }}
+        >
           {pu.author.map(au => (
             <CardHeader
+              key={au._id}
               avatar={
                 <Avatar aria-label="recipe" className={classes.avatar}>
-                  <img style={{ height: 50 }} src={au.avatar} alt="" srcset="" />
+                  <img style={{ height: 50 }} src={au.avatar} alt="avatar" />
                 </Avatar>
               }
               title={au.username}
@@ -75,8 +75,8 @@ export default function CardUser() {
             image={pu.photo_url}
             title="public"
           />
-          <CardContent className={classes.content}>            
-              {pu.description}           
+          <CardContent className={classes.content}>
+            {pu.description}
           </CardContent>
         </Card>
       ))}

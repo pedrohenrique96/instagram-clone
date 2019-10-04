@@ -7,7 +7,6 @@ import { Container } from "./styles";
 
 export default function Outline() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [username, setUserName] = useState("");
   const [bio, setBio] = useState("");
   const [followers, setFollowers] = useState("");
@@ -20,7 +19,6 @@ export default function Outline() {
         headers: token()
       });
       const { name } = response.data;
-      const { email } = response.data;
       const { username } = response.data;
       const { bio } = response.data;
       const { followers } = response.data;
@@ -28,7 +26,6 @@ export default function Outline() {
       const { avatar } = response.data;
 
       setName(name);
-      setEmail(email);
       setUserName(username);
       setBio(bio);
       setFollowers(followers);

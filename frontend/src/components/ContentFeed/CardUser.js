@@ -92,12 +92,10 @@ export default function CardsUser() {
   }, []);
 
   async function Following(_id) {
-    console.log(_id)
-
-    const response = await api.post('/following', {
+    const response = await api.post("/following", {
       headers: token()
-    })
-    console.log(response.data)
+    });
+    console.log(response.data);
   }
   return (
     <Card className={classes.card}>
@@ -106,9 +104,14 @@ export default function CardsUser() {
         <div className={classes.divP}>
           {users.map(u => (
             <div key={u._id}>
-              <img className={classes.image} src={u.avatar} />
+              <img className={classes.image} src={u.avatar} alt="avatar" />
               <span className={classes.span}>{u.username}</span>
-              <button onClick={() => Following(u._id)} className={classes.button}>Follow</button>
+              <button
+                onClick={() => Following(u._id)}
+                className={classes.button}
+              >
+                Follow
+              </button>
             </div>
           ))}
         </div>

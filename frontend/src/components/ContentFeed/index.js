@@ -10,7 +10,7 @@ export default function Content() {
     <Container className="container">
       <Icon />
       <div className="div1">
-        <Card />        
+        <Card />
       </div>
       <div className="div2">
         <CardUser />
