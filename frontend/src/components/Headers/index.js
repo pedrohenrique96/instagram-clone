@@ -6,6 +6,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Container, Img, Box } from "./styles";
 
 import { logout } from "../../services/auth";
+import color from "@material-ui/core/colors/orange";
 
 export default function Headers() {
   function hendleLogout() {
@@ -14,13 +15,13 @@ export default function Headers() {
   return (
     <Container>
       <Box className="container">
-        <Link to="/feed">
+        <Link style={{ textDecoration: 'none' }} to="/feed">
           <Img
             alt=""
             src="https://logodownload.org/wp-content/uploads/2017/04/instagram-logo-17.png"
           />
         </Link>
-        <Link to="/">
+        <Link  to="/">
           <ExitToAppIcon
             onClick={hendleLogout}
             style={{

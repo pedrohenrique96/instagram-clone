@@ -8,7 +8,7 @@ import { Div } from "./styles";
 export default function Icon() {
   return (
     <Div>
-      <Link to="/publication">
+      <Link className="link" to="/publication">
         <AddPhotoAlternateRoundedIcon className="icon" />
       </Link>
       <span>Post a Photo...</span>
