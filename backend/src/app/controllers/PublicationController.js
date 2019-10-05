@@ -8,11 +8,13 @@ class PublicationController {
     }
     async store(req, res) {
         try {
-            const { filename } = req.file;
-            const { photo, description } = req.body;
+            const { key } = req.file;
+            const { location: url = "" } = req.file;
+            const { description } = req.body;
 
             const publi = await Publication.create({
-                photo: filename,
+                photo: key,
+                url,
                 description,
                 author: req.userId
             });
