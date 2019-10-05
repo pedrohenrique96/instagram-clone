@@ -4,6 +4,7 @@
 
 - NodeJS
 - ReactJS
+- React Native (Em contrução...)
 
 ##### Ambiente de Produção
 
