@@ -4,16 +4,17 @@ import api from "../../services/api";
 
 import { token } from "../../utils/utils";
 
-import { Container } from "./styles";
+import { Container, Box } from "./styles";
 
 export default function Outline() {
   const [name, setName] = useState("");
   const [username, setUserName] = useState("");
   const [bio, setBio] = useState("");
-  const [followers, setFollowers] = useState("");
-  const [following, setFollowing] = useState("");
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
   const [avatar, setAvatar] = useState("");
   const [show, setShow] = useState(false);
+  const [foll, setFoll] = useState(false);
 
   useEffect(() => {
     async function loadUser() {
@@ -33,11 +34,18 @@ export default function Outline() {
       setFollowers(followers);
       setFollowing(following);
       setAvatar(avatar);
-
-      console.log(followers)
     }
     loadUser();
   }, []);
+
+  function showFollowers() {
+    setShow(true);
+  }
+
+  function showFollowing() {
+    setShow(true);
+    setFoll(true);
+  }
   return (
     <Container info>
       <div className="avatar">
@@ -56,10 +64,10 @@ export default function Outline() {
           <h3>{username}</h3>
         </div>
         <ul>
-          <li onClick={() => setShow(true)}>
+          <li onClick={() => showFollowers()}>
             <strong>{followers.length}</strong> Followers
           </li>
-          <li>
+          <li onClick={() => showFollowing()}>
             <strong>{following.length}</strong> Following
           </li>
         </ul>
@@ -70,18 +78,45 @@ export default function Outline() {
       </section>
 
       <Modal
-        size="sd"
+        size="sm"
         show={show}
         onHide={() => setShow(false)}
+        centered
         aria-labelledby="example-custom-modal-styling-title"
       >
         <Modal.Header>
-          <Modal.Title id="example-custom-modal-styling-title">
-            Followers
+          <Modal.Title  id="example-custom-modal-styling-title">
+            {foll ? 'Following' : 'Followers'}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {followers.name}
+          <Box>
+            {foll ? (
+              <>
+                {following.map(f => (
+                  <div id="modal">
+                    <img style={{ height: 50 }} src={f.avatar} alt="" />
+                    <div id="user">
+                      <div id="username">{f.username}</div>
+                      <div id="name">{f.name}</div>
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <>
+                {followers.map(f => (
+                  <div id="modal">
+                    <img style={{ height: 50 }} src={f.avatar} alt="" />
+                    <div id="user">
+                      <div id="username">{f.username}</div>
+                      <div id="name">{f.name}</div>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+          </Box>
         </Modal.Body>
       </Modal>
     </Container>

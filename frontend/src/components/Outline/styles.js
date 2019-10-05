@@ -89,6 +89,11 @@ export const Container = styled.div`
         font-size: 18px;
         font-weight: 600;
       }
+
+      Modal #modal { 
+         display: flex;
+      }
+     }
     `}
   ${props =>
     props.content &&
@@ -106,12 +111,12 @@ export const Container = styled.div`
         padding: 0;
       }
 
-      article div  {
-      width: 100%;
-      max-height: 239px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 20px;
+      article div {
+        width: 100%;
+        max-height: 239px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 20px;
       }
       article div img {
         height: 239px;
@@ -127,4 +132,30 @@ export const Container = styled.div`
         margin-top: 200px;
       }
     `}
+    `;
+
+export const Box = styled.div`
+  #modal {
+    display: flex;
+    margin-bottom: 15px;
+
+    #user {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 10px;
+
+      #username {
+        margin-bottom: 4px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      #name {
+        font-size: 13px;
+        font-weight: 500;
+        color: #999;
+      }
+    }
+  }
 `;
