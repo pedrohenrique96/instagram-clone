@@ -40,6 +40,7 @@ export default function Outline() {
 
   function showFollowers() {
     setShow(true);
+    setFoll(false);
   }
 
   function showFollowing() {
@@ -85,8 +86,8 @@ export default function Outline() {
         aria-labelledby="example-custom-modal-styling-title"
       >
         <Modal.Header>
-          <Modal.Title  id="example-custom-modal-styling-title">
-            {foll ? 'Following' : 'Followers'}
+          <Modal.Title id="example-custom-modal-styling-title">
+            {foll ? "Following" : "Followers"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
