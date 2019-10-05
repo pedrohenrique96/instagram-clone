@@ -95,7 +95,7 @@ export default function Outline() {
               <>
                 {following.map(f => (
                   <div id="modal">
-                    <img style={{ height: 50 }} src={f.avatar} alt="" />
+                    <img src={f.avatar} alt="" />
                     <div id="user">
                       <div id="username">{f.username}</div>
                       <div id="name">{f.name}</div>

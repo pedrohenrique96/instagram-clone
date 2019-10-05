@@ -139,6 +139,10 @@ export const Box = styled.div`
     display: flex;
     margin-bottom: 15px;
 
+    img {
+      height: 50px;
+    }
+
     #user {
       display: flex;
       flex-direction: column;
