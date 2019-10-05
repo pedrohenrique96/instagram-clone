@@ -9,13 +9,17 @@ const PublicationSchema = new Schema({
         maxlength: 200,
         minlength: 1
     },
-
+    createAt: {
+        type: Date,
+        default: Date.now
+    },
     author: [
         {
             type: Schema.Types.ObjectId,
             ref: "User",
             required: true
         },
+
         {
             toJSON: {
                 virtuals: true
@@ -24,8 +28,8 @@ const PublicationSchema = new Schema({
     ]
 });
 
-PublicationSchema.pre('save', function() {
-    if(!this.url) {
+PublicationSchema.pre("save", function() {
+    if (!this.url) {
         this.url = `http://localhost:5000/files/${this.photo}`;
     }
 });

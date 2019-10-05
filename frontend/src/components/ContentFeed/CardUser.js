@@ -75,7 +75,15 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 10,
     fontSize: 16,
     fontWeight: 500
+  },
+  empty: {
+      textAlign: 'center',
+      fontSize: 16,
+      color: '#ddd',
+      fontWeight: 'bold',
+      marginTop: 15
   }
+
 }));
 
 export default function CardsUser() {
@@ -111,7 +119,8 @@ export default function CardsUser() {
     <Card className={classes.card}>
       <CardHeader className={classes.cardHeader} title="Encontre Usuários" />
       <CardContent className={classes.cardContent}>
-        <div className={classes.divP}>
+        {users.length > 0 ? (
+          <div className={classes.divP}>
           {users.map(u => (
             <div key={u._id}>
               <img className={classes.image} src={u.avatar} alt="avatar" />
@@ -125,6 +134,9 @@ export default function CardsUser() {
             </div>
           ))}
         </div>
+        ) : (
+          <div className={classes.empty}>No Users :(</div>
+        )}
       </CardContent>
     </Card>
   );

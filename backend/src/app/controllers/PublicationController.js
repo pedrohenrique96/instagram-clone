@@ -2,8 +2,9 @@ const Publication = require("../models/Publication");
 
 class PublicationController {
     async index(req, res) {
-        const publi = await Publication.find().populate("author");
-
+        const publi = await Publication.find()
+            .populate("author")
+            .sort({ createAt: -1 });
         return res.json(publi);
     }
     async store(req, res) {

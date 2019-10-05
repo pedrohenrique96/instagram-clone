@@ -67,4 +67,10 @@ export const Container = styled.div`
   .icon {
     color: #ddd;
   }
+
+  .error {
+    margin: 10px 0 15px 0;
+    text-align: center;
+    color: red;
+  }
 `;

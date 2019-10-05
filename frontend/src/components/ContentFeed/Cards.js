@@ -78,7 +78,7 @@ export default function CardUser() {
               ))}
               <CardMedia
                 className={classes.media}
-                image={pu.photo_url}
+                image={pu.url}
                 title="public"
               />
               <CardContent className={classes.content}>

@@ -26,7 +26,7 @@ export default function Outline() {
           {publi.length > 0 ? (
             <div>
             {publi.map(p => (
-                <img alt="alt" src={p.photo_url} />
+                <img alt="alt" src={p.url} />
                 ))}                    
             </div>
           ):(

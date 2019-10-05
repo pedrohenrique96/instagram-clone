@@ -5,9 +5,10 @@ import { Container } from "./styles";
 import api from "../../services/api";
 import { token } from "../../utils/utils";
 
-export default function Form() {
+export default function Form(props) {
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState(null);
+  const [error, setError] = useState("");
 
   const preview = useMemo(() => {
     return photo ? URL.createObjectURL(photo) : null;
@@ -16,24 +17,28 @@ export default function Form() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const data = new FormData();
+    if (!description) return setError("Fill in the description...");
+    if (!photo) return setError("Put a picture...");
+    try {
+      const data = new FormData();
 
-    data.append("description", description);
-    data.append("photo", photo);
+      data.append("description", description);
+      data.append("photo", photo);
 
-    await api.post("/publication", data, {
-      headers: token()
-    });
+      await api.post("/publication", data, {
+        headers: token()
+      });
+      window.history.back();
+    } catch (err) {
+      setError("Unsupported photo or short description...");
+    }
   }
   return (
     <Container>
       <form onSubmit={handleSubmit}>
         <h3>Upload Photo</h3>
-        <label
-          id="photo"
-          style={{ backgroundImage: `url(${preview})` }}
-          className={photo ? "has-photo" : ""}
-        >
+        <div className="error">{error}</div>
+        <label id="photo" style={{ backgroundImage: `url(${preview})` }}>
           <input type="file" onChange={e => setPhoto(e.target.files[0])} />
           <PhotoCameraSharpIcon style={{ color: "#ddd" }} id="icon" />
         </label>

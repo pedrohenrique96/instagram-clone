@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/cloneInsta", {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-});
+try {
+    mongoose.connect(
+        process.env.MONGO_URL,
+        {
+            useNewUrlParser: true
+        }
+    );
+} catch(err) {
+    console.log(err)
+}

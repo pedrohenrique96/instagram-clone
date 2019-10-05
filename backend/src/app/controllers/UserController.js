@@ -68,6 +68,7 @@ class UserController {
 
             return res.status(200).json({ user, token });
         } catch (err) {
+            console.log(err)
             res.status(400).send({ error: "Registration fail" });
         }
     }
