@@ -1,4 +1,4 @@
-### Clone Instagram - Test da CODEBY
+## Clone Instagram - Test da CODEBY
 
 ###### FullStack
 
@@ -19,5 +19,7 @@
 - Seguir Usuário
 - Ver quem te segue e ver quem você segue 
 - Fazer publicações de imagens
+
+###### Crie seu usuário e publique uma foto
 
 [Instagram Clone](https://instagram-frontendd.herokuapp.com)
